@@ -1,0 +1,727 @@
+@prefix : <http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#> .
+@prefix dbo: <http://dbpedia.org/ontology#> .
+@prefix mus: <http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists> .
+
+<http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists> rdf:type owl:Ontology ;
+                                                                  owl:imports <http://dbpedia.org/ontology/> ,
+                                                                              foaf: .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://dbpedia.org/ontology/musicBy
+<http://dbpedia.org/ontology/musicBy> owl:equivalentProperty mus:playedBy .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#bornIn
+mus:bornIn rdf:type owl:ObjectProperty ;
+           rdfs:domain mus:Person ;
+           rdfs:range mus:Country ;
+           rdfs:isDefinedBy "An artist is born in a country." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#collaboratedWith
+mus:collaboratedWith rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf foaf:knows ;
+                     rdf:type owl:SymmetricProperty ;
+                     rdfs:isDefinedBy "An artist/band collaborated with an artist/band." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#hasGenre
+mus:hasGenre rdf:type owl:ObjectProperty ;
+             rdfs:domain mus:Song ;
+             rdfs:range mus:Genre ;
+             rdfs:isDefinedBy "A song has a genre." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#managedBy
+mus:managedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain mus:Artist ;
+              rdfs:range mus:Manager ;
+              rdfs:isDefinedBy "An artist/band is managed by a manager." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#nominatedForAward
+mus:nominatedForAward rdf:type owl:ObjectProperty ;
+                      rdfs:domain mus:Song ;
+                      rdfs:range mus:Award ;
+                      rdfs:isDefinedBy "A song was nominated for an award." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#partOfAlbum
+mus:partOfAlbum rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain mus:Song ;
+                rdfs:range mus:Album ;
+                rdfs:isDefinedBy "A song is part of an album." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#partOfBand
+mus:partOfBand rdf:type owl:ObjectProperty ;
+               rdfs:domain mus:Artist ;
+               rdfs:range mus:Band ;
+               rdfs:isDefinedBy "An artist is band of a band." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#playedBy
+mus:playedBy rdf:type owl:ObjectProperty ;
+             rdfs:domain mus:Song ;
+             rdfs:isDefinedBy "A song is played by an artist/band." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#playedInTour
+mus:playedInTour rdf:type owl:ObjectProperty ;
+                 rdfs:range mus:Tour ;
+                 rdfs:isDefinedBy "An artist/band played in a tour." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#wonAward
+mus:wonAward rdf:type owl:ObjectProperty ;
+             rdfs:domain mus:Song ;
+             rdfs:range mus:Award ;
+             rdfs:isDefinedBy "A song won an award." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#writtenBy
+mus:writtenBy rdf:type owl:ObjectProperty ;
+              rdfs:domain mus:Song ;
+              rdfs:isDefinedBy "A song is written by an artist/band." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#hasNetWorth
+mus:hasNetWorth rdf:type owl:DatatypeProperty ;
+                rdfs:comment "An artist has a net worth." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#name
+mus:name rdf:type owl:DatatypeProperty ;
+         rdfs:comment "A thing has a name." .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#startedActivityIn
+mus:startedActivityIn rdf:type owl:DatatypeProperty ;
+                      rdfs:comment "An artist/band started activity in a year." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://dbpedia.org/ontology/MusicGenre
+<http://dbpedia.org/ontology/MusicGenre> owl:equivalentClass mus:Genre .
+
+
+###  http://dbpedia.org/ontology/MusicalArtist
+<http://dbpedia.org/ontology/MusicalArtist> owl:equivalentClass mus:Artist .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Album
+mus:Album rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Artist
+mus:Artist rdf:type owl:Class ;
+           rdfs:subClassOf mus:Person .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Award
+mus:Award rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#AwardedSong
+mus:AwardedSong rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty mus:wonAward ;
+                                      owl:someValuesFrom mus:Award
+                                    ] ;
+                rdfs:subClassOf mus:Song .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Band
+mus:Band rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#BandMember
+mus:BandMember rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty mus:partOfBand ;
+                                     owl:someValuesFrom mus:Band
+                                   ] ;
+               rdfs:subClassOf mus:Artist .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Bassist
+mus:Bassist rdf:type owl:Class ;
+            rdfs:subClassOf mus:Artist .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Country
+mus:Country rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Drummer
+mus:Drummer rdf:type owl:Class ;
+            rdfs:subClassOf mus:Artist .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Genre
+mus:Genre rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Guitarist
+mus:Guitarist rdf:type owl:Class ;
+              rdfs:subClassOf mus:Artist .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Keyboardist
+mus:Keyboardist rdf:type owl:Class ;
+                rdfs:subClassOf mus:Artist .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Manager
+mus:Manager rdf:type owl:Class ;
+            rdfs:subClassOf mus:Person .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#NominatedSong
+mus:NominatedSong rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty mus:nominatedForAward ;
+                                        owl:someValuesFrom mus:Award
+                                      ] ;
+                  rdfs:subClassOf mus:Song .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Person
+mus:Person rdf:type owl:Class ;
+           owl:equivalentClass foaf:Person .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#SoloArtist
+mus:SoloArtist rdf:type owl:Class ;
+               rdfs:subClassOf mus:Artist .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Song
+mus:Song rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Tour
+mus:Tour rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Vocalist
+mus:Vocalist rdf:type owl:Class ;
+             rdfs:subClassOf mus:Artist .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Anna_Abreu
+mus:Anna_Abreu rdf:type owl:NamedIndividual ,
+                        mus:Artist ;
+               mus:bornIn mus:Finland ;
+               <http://dbpedia.org/ontology/Name> "Anna Abreu"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Australia
+mus:Australia rdf:type owl:NamedIndividual ,
+                       mus:Country ;
+              rdfs:label "Australia"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Avicii
+mus:Avicii rdf:type owl:NamedIndividual ,
+                    mus:Artist ;
+           mus:bornIn mus:Sweden ;
+           <http://dbpedia.org/ontology/Name> "Avicii"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Bad_Liar
+mus:Bad_Liar rdf:type owl:NamedIndividual ,
+                      mus:Song ;
+             mus:playedBy mus:Selena_Gomez ;
+             <http://dbpedia.org/ontology/Name> "Bad Liar"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Billie_Eilish
+mus:Billie_Eilish rdf:type owl:NamedIndividual ,
+                           mus:Artist ;
+                  mus:bornIn mus:USA ;
+                  <http://dbpedia.org/ontology/Name> "Billie Eilish"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Born_To_Be_Yours
+mus:Born_To_Be_Yours rdf:type owl:NamedIndividual ,
+                              mus:Song ;
+                     mus:playedBy mus:Kygo ;
+                     <http://dbpedia.org/ontology/Name> "Born To Be Yours"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Burna_Boy
+mus:Burna_Boy rdf:type owl:NamedIndividual ,
+                       mus:Artist ;
+              mus:bornIn mus:Nigeria ;
+              <http://dbpedia.org/ontology/Name> "Burna Boy"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Canada
+mus:Canada rdf:type owl:NamedIndividual ,
+                    mus:Country ;
+           rdfs:label "Canada"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Charlie_Puth
+mus:Charlie_Puth rdf:type owl:NamedIndividual ,
+                          mus:Vocalist ;
+                 mus:collaboratedWith mus:Selena_Gomez ;
+                 <http://dbpedia.org/ontology/Name> "Charlie Puth"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Chris_Martin
+mus:Chris_Martin rdf:type owl:NamedIndividual ,
+                          mus:Vocalist ;
+                 mus:partOfBand mus:Coldplay ;
+                 <http://dbpedia.org/ontology/Name> "Chris Martin"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Coldplay
+mus:Coldplay rdf:type owl:NamedIndividual ,
+                      mus:Band ;
+             <http://dbpedia.org/ontology/Name> "Coldplay"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#David_Guetta
+mus:David_Guetta rdf:type owl:NamedIndividual ,
+                          mus:Artist ;
+                 mus:bornIn mus:France ;
+                 <http://dbpedia.org/ontology/Name> "David Guetta"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Delia_Matache
+mus:Delia_Matache rdf:type owl:NamedIndividual ,
+                           mus:Artist ;
+                  mus:bornIn mus:Romania ;
+                  <http://dbpedia.org/ontology/Name> "Delia Matache"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Dive
+mus:Dive rdf:type owl:NamedIndividual ,
+                  mus:Song ;
+         mus:hasGenre mus:Pop ;
+         mus:playedBy mus:Ed_Sheeran ;
+         <http://dbpedia.org/ontology/Name> "Dive"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Doja_Cat
+mus:Doja_Cat rdf:type owl:NamedIndividual ,
+                      mus:Artist ;
+             mus:bornIn mus:USA ;
+             <http://dbpedia.org/ontology/Name> "Doja Cat"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Drake
+mus:Drake rdf:type owl:NamedIndividual ,
+                   mus:Artist ;
+          mus:bornIn mus:Canada ;
+          <http://dbpedia.org/ontology/Name> "Drake"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Dream_on_me
+mus:Dream_on_me rdf:type owl:NamedIndividual ,
+                         mus:Song ;
+                mus:playedBy mus:Ella_Henderson ;
+                <http://dbpedia.org/ontology/Name> "Dream On Me"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Dua_Lipa
+mus:Dua_Lipa rdf:type owl:NamedIndividual ,
+                      mus:Artist ;
+             mus:bornIn mus:England ;
+             <http://dbpedia.org/ontology/Name> "Dua Lipa"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Ed_Sheeran
+mus:Ed_Sheeran rdf:type owl:NamedIndividual ,
+                        mus:Artist ;
+               mus:bornIn mus:England ;
+               mus:collaboratedWith mus:Gemini ;
+               <http://dbpedia.org/ontology/Name> "Ed Sheeran"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Elena_Gheorghe
+mus:Elena_Gheorghe rdf:type owl:NamedIndividual ,
+                            mus:Artist ;
+                   mus:bornIn mus:Romania ;
+                   <http://dbpedia.org/ontology/Name> "Elena Gheorghe"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Eliza_Scanlen
+mus:Eliza_Scanlen rdf:type owl:NamedIndividual ,
+                           mus:Artist ;
+                  mus:bornIn mus:Australia ;
+                  <http://dbpedia.org/ontology/Name> "Eliza Scanlen"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Ella_Henderson
+mus:Ella_Henderson rdf:type owl:NamedIndividual ,
+                            mus:Artist ;
+                   mus:bornIn mus:England ;
+                   mus:collaboratedWith mus:Kygo ;
+                   <http://dbpedia.org/ontology/Name> "Ella Henderson"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Eminem
+mus:Eminem rdf:type owl:NamedIndividual ,
+                    mus:Artist ;
+           mus:bornIn mus:USA ;
+           <http://dbpedia.org/ontology/Name> "Eminem"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#England
+mus:England rdf:type owl:NamedIndividual ,
+                     mus:Country ;
+            <http://dbpedia.org/ontology/Name> "England"@en ;
+            rdfs:label "United Kingdom"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Enrique_Iglesias
+mus:Enrique_Iglesias rdf:type owl:NamedIndividual ,
+                              mus:Artist ;
+                     mus:bornIn mus:Spain ;
+                     <http://dbpedia.org/ontology/Name> "Enrique Iglesias"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Finland
+mus:Finland rdf:type owl:NamedIndividual ,
+                     mus:Country ;
+            rdfs:label "Finland"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#France
+mus:France rdf:type owl:NamedIndividual ,
+                    mus:Country ;
+           rdfs:label "France"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Gemini
+mus:Gemini rdf:type owl:NamedIndividual ,
+                    mus:Artist ;
+           mus:collaboratedWith mus:Drake ;
+           <http://dbpedia.org/ontology/Name> "Gemini"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Gold
+mus:Gold rdf:type owl:NamedIndividual ,
+                  mus:Award ;
+         <http://dbpedia.org/ontology/Name> "Gold"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Guy_Berryman
+mus:Guy_Berryman rdf:type owl:NamedIndividual ,
+                          mus:Bassist ;
+                 mus:partOfBand mus:Coldplay ;
+                 <http://dbpedia.org/ontology/Name> "Guy Berryman"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Hard_on_Yourself
+mus:Hard_on_Yourself rdf:type owl:NamedIndividual ,
+                              mus:Song ;
+                     mus:playedBy mus:Charlie_Puth ;
+                     <http://dbpedia.org/ontology/Name> "Hard On Yourself"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Harry_Styles
+mus:Harry_Styles rdf:type owl:NamedIndividual ,
+                          mus:Vocalist ;
+                 mus:bornIn mus:England ;
+                 <http://dbpedia.org/ontology/Name> "Harry Styles"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Hip_Hop
+mus:Hip_Hop rdf:type owl:NamedIndividual ,
+                     mus:Genre ;
+            <http://dbpedia.org/ontology/Name> "Hip hop"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Inna
+mus:Inna rdf:type owl:NamedIndividual ,
+                  mus:Artist ;
+         mus:bornIn mus:Romania ;
+         <http://dbpedia.org/ontology/Name> "Inna"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#James_Hype
+mus:James_Hype rdf:type owl:NamedIndividual ,
+                        mus:Artist ;
+               mus:bornIn mus:England ;
+               <http://dbpedia.org/ontology/Name> "James Hype"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Jonny_Buckland
+mus:Jonny_Buckland rdf:type owl:NamedIndividual ,
+                            mus:Guitarist ;
+                   mus:partOfBand mus:Coldplay ;
+                   <http://dbpedia.org/ontology/Name> "Jonny_Buckland"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Julia_Michaels
+mus:Julia_Michaels rdf:type owl:NamedIndividual ,
+                            mus:Artist ;
+                   mus:bornIn mus:USA ;
+                   <http://dbpedia.org/ontology/Name> "Julia Michaels"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Justin_Bieber
+mus:Justin_Bieber rdf:type owl:NamedIndividual ,
+                           mus:Vocalist ;
+                  mus:bornIn mus:Canada ;
+                  <http://dbpedia.org/ontology/Name> "Justin Bieber"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Khalid
+mus:Khalid rdf:type owl:NamedIndividual ,
+                    mus:Artist ;
+           mus:bornIn mus:USA ;
+           <http://dbpedia.org/ontology/Name> "Khalid"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Kygo
+mus:Kygo rdf:type owl:NamedIndividual ,
+                  mus:Artist ;
+         mus:bornIn mus:Norway ;
+         <http://dbpedia.org/ontology/Name> "Kygo"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Lewis_Capaldi
+mus:Lewis_Capaldi rdf:type owl:NamedIndividual ,
+                           mus:Vocalist ;
+                  mus:bornIn mus:England ;
+                  <http://dbpedia.org/ontology/Name> "Lewis Capaldi"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Martin_Garrix
+mus:Martin_Garrix rdf:type owl:NamedIndividual ,
+                           mus:Artist ;
+                  mus:bornIn mus:Netherlands ;
+                  <http://dbpedia.org/ontology/Name> "Martin Garrix"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Moment_4_life
+mus:Moment_4_life rdf:type owl:NamedIndividual ,
+                           mus:Song ;
+                  mus:hasGenre mus:Hip_Hop ;
+                  mus:partOfAlbum mus:Pink_Friday ;
+                  mus:wonAward mus:Gold ;
+                  mus:writtenBy mus:Drake ;
+                  <http://dbpedia.org/ontology/Name> "Moment 4 Life"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Netherlands
+mus:Netherlands rdf:type owl:NamedIndividual ,
+                         mus:Country ;
+                rdfs:label "Netherlands"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Nicki_Minaj
+mus:Nicki_Minaj rdf:type owl:NamedIndividual ,
+                         mus:Artist ;
+                mus:bornIn mus:Trinidad_and_Tobago ;
+                <http://dbpedia.org/ontology/Name> "Nicki Minaj"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Nigeria
+mus:Nigeria rdf:type owl:NamedIndividual ,
+                     mus:Country ;
+            rdfs:label "Nigeria"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Norway
+mus:Norway rdf:type owl:NamedIndividual ,
+                    mus:Country ;
+           <http://dbpedia.org/ontology/Name> "Norway"@en ;
+           rdfs:label "Norway"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Pink_Friday
+mus:Pink_Friday rdf:type owl:NamedIndividual ,
+                         mus:Album ;
+                <http://dbpedia.org/ontology/Name> ""@en ,
+                                                   "Pink Friday"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Platinum
+mus:Platinum rdf:type owl:NamedIndividual ,
+                      mus:Award ;
+             <http://dbpedia.org/ontology/Name> "Platinum"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Pop
+mus:Pop rdf:type owl:NamedIndividual ,
+                 mus:Genre .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Rita_Ora
+mus:Rita_Ora rdf:type owl:NamedIndividual ,
+                      mus:Vocalist ;
+             mus:bornIn mus:England ;
+             <http://dbpedia.org/ontology/Name> "Rita Ora"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Romania
+mus:Romania rdf:type owl:NamedIndividual ,
+                     mus:Country ;
+            rdfs:label "Romania"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Ruslana
+mus:Ruslana rdf:type owl:NamedIndividual ,
+                     mus:Artist ;
+            mus:bornIn mus:Ukraine ;
+            <http://dbpedia.org/ontology/Name> "Ruslana"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Sam_Smith
+mus:Sam_Smith rdf:type owl:NamedIndividual ,
+                       mus:Vocalist ;
+              mus:bornIn mus:England ;
+              <http://dbpedia.org/ontology/Name> "Sam Smith"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Selena_Gomez
+mus:Selena_Gomez rdf:type owl:NamedIndividual ,
+                          mus:Artist ,
+                          mus:Vocalist ;
+                 mus:bornIn mus:USA ;
+                 mus:collaboratedWith mus:Ed_Sheeran ;
+                 <http://dbpedia.org/ontology/Name> "Selena Gomez"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Shakira
+mus:Shakira rdf:type owl:NamedIndividual ,
+                     mus:Artist ;
+            mus:bornIn mus:Spain ;
+            <http://dbpedia.org/ontology/Name> "Shakira"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Shawn_Mendes
+mus:Shawn_Mendes rdf:type owl:NamedIndividual ,
+                          mus:Vocalist ;
+                 mus:bornIn mus:Canada ;
+                 mus:collaboratedWith mus:Justin_Bieber ;
+                 <http://dbpedia.org/ontology/Name> "Shawn Mendes"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Spain
+mus:Spain rdf:type owl:NamedIndividual ,
+                   mus:Country ;
+          rdfs:label "Spain"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Sweden
+mus:Sweden rdf:type owl:NamedIndividual ,
+                    mus:Country ;
+           rdfs:label "Sweden"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Taylor_Swift
+mus:Taylor_Swift rdf:type owl:NamedIndividual ,
+                          mus:Vocalist ;
+                 mus:bornIn mus:USA ;
+                 <http://dbpedia.org/ontology/Name> "Taylor Swift"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Texas
+mus:Texas rdf:type owl:NamedIndividual ,
+                   mus:Country ;
+          rdfs:label "United States of America"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Thank_me_later
+mus:Thank_me_later rdf:type owl:NamedIndividual ,
+                            mus:Album ;
+                   mus:wonAward mus:Platinum ;
+                   <http://dbpedia.org/ontology/Name> "Thank Me Later"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#The_Weeknd
+mus:The_Weeknd rdf:type owl:NamedIndividual ,
+                        mus:Vocalist ;
+               mus:bornIn mus:Canada ;
+               <http://dbpedia.org/ontology/Name> "The Weeknd"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Tiësto
+mus:Tiësto rdf:type owl:NamedIndividual ,
+                    mus:Artist ;
+           mus:bornIn mus:Netherlands ;
+           <http://dbpedia.org/ontology/Name> "Tiësto"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Treat_you_better
+mus:Treat_you_better rdf:type owl:NamedIndividual ,
+                              mus:Song ;
+                     mus:hasGenre mus:Pop ;
+                     mus:playedBy mus:Shawn_Mendes ;
+                     <http://dbpedia.org/ontology/Name> "Treat You Better"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Trinidad_and_Tobago
+mus:Trinidad_and_Tobago rdf:type owl:NamedIndividual ,
+                                 mus:Country ;
+                        <http://dbpedia.org/ontology/Name> "Trinidad and Tobago"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#USA
+mus:USA rdf:type owl:NamedIndividual ,
+                 mus:Country ;
+        rdfs:label "United States of America"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Ukraine
+mus:Ukraine rdf:type owl:NamedIndividual ,
+                     mus:Country ;
+            rdfs:label "Ukraine"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Up_All_Night
+mus:Up_All_Night rdf:type owl:NamedIndividual ,
+                          mus:Song ;
+                 mus:hasGenre mus:Hip_Hop ;
+                 mus:partOfAlbum mus:Thank_me_later ;
+                 <http://dbpedia.org/ontology/Name> "Up All Night"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#What_do_you_mean
+mus:What_do_you_mean rdf:type owl:NamedIndividual ,
+                              mus:Song ;
+                     mus:hasGenre mus:Pop ;
+                     mus:playedBy mus:Justin_Bieber ;
+                     <http://dbpedia.org/ontology/Name> "What Do You Mean"@en .
+
+
+###  http://www.semanticweb.org/no/ontologies/2022/9/MusicalArtists#Will_Champion
+mus:Will_Champion rdf:type owl:NamedIndividual ,
+                           mus:BandMember ;
+                  mus:bornIn mus:England ;
+                  mus:partOfBand mus:Coldplay ;
+                  <http://dbpedia.org/ontology/Name> "Will Champion"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
